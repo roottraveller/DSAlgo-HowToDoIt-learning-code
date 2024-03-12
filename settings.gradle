@@ -2,4 +2,5 @@ rootProject.name = 'DSAlgo-HowToDoIt-learningcode'
 include 'consistent-hashing-implementation'
 include 'Image-cropping'
 include 'vending-machine-with-state-machine-implementation'
+include 'background-color-of-image'
 
