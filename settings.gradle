@@ -4,4 +4,5 @@ include 'Image-cropping'
 include 'vending-machine-with-state-machine-implementation'
 include 'background-color-of-image'
 include 'terminal-based-chatserver'
+include 'java-code'
 
