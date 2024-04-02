@@ -10,7 +10,7 @@ public class WaitNotifyAlwaysFromSyncContex {
 		threadA.start();
 		threadB.start();
 		
-		synchronized(threadB) { //NOTE HRER
+		synchronized(threadB) { //NOTE HERE
 			try {
 				System.out.println(Thread.currentThread().getName() + " Wait() Called. Waiting for threadB to complete.");
 				threadB.wait(); //AND HERE TOO
