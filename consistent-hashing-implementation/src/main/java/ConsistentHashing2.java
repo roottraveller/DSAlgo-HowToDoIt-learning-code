@@ -21,16 +21,35 @@ public class ConsistentHashing2 {
         }
     }
 
+    private static String getVirtualNode(String node, int i) {
+        return node + "_" + i;
+    }
+
+    public static void main(String[] args) {
+        List<String> nodes = List.of("NodeA", "NodeB", "NodeC");
+
+        ConsistentHashing2 ch = new ConsistentHashing2(3, nodes);
+
+        String key1 = "key1";
+        String key67890 = "key67890";
+        System.out.println("key1 is assigned to node: " + ch.getNode(key1));
+        System.out.println("key67890 is assigned to node: " + ch.getNode(key67890));
+
+        ch.addNode("NodeD");
+        System.out.println("key1 is assigned to node: " + ch.getNode(key1));
+        System.out.println("key67890 is assigned to node: " + ch.getNode(key67890));
+
+        ch.deleteNode("NodeC");
+        System.out.println("key1 is assigned to node: " + ch.getNode(key1));
+        System.out.println("key67890 is assigned to node: " + ch.getNode(key67890));
+    }
+
     private void addNode(String node) {
         for (int i = 0; i < numberOfReplicas; i++) {
             String virtualNode = getVirtualNode(node, i);
             int hash = hash(virtualNode);
             circle.put(hash, virtualNode);
         }
-    }
-
-    private static String getVirtualNode(String node, int i) {
-        return node + "_" + i;
     }
 
     private void deleteNode(String node) {
@@ -65,24 +84,5 @@ public class ConsistentHashing2 {
         }
 
         return circle.get(hash);
-    }
-
-    public static void main(String[] args) {
-        List<String> nodes = List.of("NodeA", "NodeB", "NodeC");
-
-        ConsistentHashing2 ch = new ConsistentHashing2(3, nodes);
-
-        String key1 = "key1";
-        String key67890 = "key67890";
-        System.out.println("key1 is assigned to node: " + ch.getNode(key1));
-        System.out.println("key67890 is assigned to node: " + ch.getNode(key67890));
-
-        ch.addNode("NodeD");
-        System.out.println("key1 is assigned to node: " + ch.getNode(key1));
-        System.out.println("key67890 is assigned to node: " + ch.getNode(key67890));
-
-        ch.deleteNode("NodeC");
-        System.out.println("key1 is assigned to node: " + ch.getNode(key1));
-        System.out.println("key67890 is assigned to node: " + ch.getNode(key67890));
     }
 }

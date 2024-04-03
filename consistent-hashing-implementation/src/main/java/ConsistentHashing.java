@@ -1,6 +1,7 @@
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.*;
+import java.util.SortedMap;
+import java.util.TreeMap;
 
 /**
  * https://ishan-aggarwal.medium.com/consistent-hashing-an-overview-and-implementation-in-java-6b47c718558a
@@ -14,6 +15,23 @@ public class ConsistentHashing {
         this.ring = new TreeMap<>();
         this.numberOfReplicas = numberOfReplicas;
         this.md = MessageDigest.getInstance("MD5");
+    }
+
+    public static void main(String[] args) throws NoSuchAlgorithmException {
+        ConsistentHashing ch = new ConsistentHashing(3);
+        ch.addServer("server1");
+        ch.addServer("server2");
+        ch.addServer("server3");
+
+
+        System.out.println("key1: is present on server: " + ch.getServer("key1"));
+        System.out.println("key67890: is present on server: " + ch.getServer("key67890"));
+
+        ch.removeServer("server1");
+        System.out.println("After removing server1");
+
+        System.out.println("key1: is present on server: " + ch.getServer("key1"));
+        System.out.println("key67890: is present on server: " + ch.getServer("key67890"));
     }
 
     public void addServer(String server) {
@@ -50,22 +68,5 @@ public class ConsistentHashing {
                 ((long) (digest[2] & 0xFF) << 16) |
                 ((long) (digest[1] & 0xFF) << 8) |
                 ((long) (digest[0] & 0xFF));
-    }
-
-    public static void main(String[] args) throws NoSuchAlgorithmException {
-        ConsistentHashing ch = new ConsistentHashing(3);
-        ch.addServer("server1");
-        ch.addServer("server2");
-        ch.addServer("server3");
-
-
-        System.out.println("key1: is present on server: " + ch.getServer("key1"));
-        System.out.println("key67890: is present on server: " + ch.getServer("key67890"));
-
-        ch.removeServer("server1");
-        System.out.println("After removing server1");
-
-        System.out.println("key1: is present on server: " + ch.getServer("key1"));
-        System.out.println("key67890: is present on server: " + ch.getServer("key67890"));
     }
 }

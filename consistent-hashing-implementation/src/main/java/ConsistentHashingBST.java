@@ -19,6 +19,22 @@ class Node {
 public class ConsistentHashingBST {
     private Node root;
 
+    public static void main(String[] args) {
+        ConsistentHashingBST chBST = new ConsistentHashingBST();
+
+        String key1 = "key1";
+        String key67890 = "key67890";
+        String key54321 = "key54321";
+        // Add nodes to the consistent hashing BST
+        chBST.addNode("NodeA", key1);
+        chBST.addNode("NodeB", key67890);
+        chBST.addNode("NodeC", key54321);
+
+        System.out.println("key1 is assigned to node: " + chBST.getNode(key1));
+        System.out.println("key67890 is assigned to node: " + chBST.getNode(key67890));
+        System.out.println("key54321 is assigned to node: " + chBST.getNode(key54321));
+    }
+
     // Add a new node to the BST
     public void addNode(String key, String value) {
         int hash = hash(key);
@@ -76,21 +92,5 @@ public class ConsistentHashingBST {
         } catch (NoSuchAlgorithmException e) {
             throw new RuntimeException("Hashing algorithm not found.", e);
         }
-    }
-
-    public static void main(String[] args) {
-        ConsistentHashingBST chBST = new ConsistentHashingBST();
-
-        String key1 = "key1";
-        String key67890 = "key67890";
-        String key54321 = "key54321";
-        // Add nodes to the consistent hashing BST
-        chBST.addNode("NodeA", key1);
-        chBST.addNode("NodeB", key67890);
-        chBST.addNode("NodeC", key54321);
-
-        System.out.println("key1 is assigned to node: " + chBST.getNode(key1));
-        System.out.println("key67890 is assigned to node: " + chBST.getNode(key67890));
-        System.out.println("key54321 is assigned to node: " + chBST.getNode(key54321));
     }
 }

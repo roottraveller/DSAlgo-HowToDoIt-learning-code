@@ -2,12 +2,39 @@ import com.google.common.collect.Maps;
 
 import java.util.Map;
 
+enum Coin {
+    TEN(10),
+    TWENTY(20),
+    THIRTY(30);
+
+    private long value;
+
+    Coin(long value) {
+        this.value = value;
+    }
+
+    public long getValue() {
+        return value;
+    }
+}
+
 public interface IMachine {
 }
 
+interface Inventory {
+    void loadInventory();
+
+    boolean isStockAvailable(Item currentItem);
+
+    void decreaseStock(Item currentItem, long count);
+}
+
+interface IState {
+}
+
 class VendingMachine implements IMachine {
-    private IState state;
     private final Inventory itemInventory = new ItemInventory();
+    private IState state;
     private Item currentItem;
 
     public VendingMachine() {
@@ -28,19 +55,13 @@ class VendingMachine implements IMachine {
         this.state = state;
     }
 
-    public void setCurrentItem(Item currentItem) {
-        this.currentItem = currentItem;
-    }
-
     public Item getCurrentItem() {
         return currentItem;
     }
-}
 
-interface Inventory {
-    void loadInventory();
-    boolean isStockAvailable(Item currentItem);
-    void decreaseStock(Item currentItem, long count);
+    public void setCurrentItem(Item currentItem) {
+        this.currentItem = currentItem;
+    }
 }
 
 class ItemInventory implements Inventory {
@@ -62,9 +83,6 @@ class ItemInventory implements Inventory {
     public void decreaseStock(Item currentItem, long count) {
         itemInventoryMap.put(currentItem, itemInventoryMap.getOrDefault(currentItem, 0L) - 1L);
     }
-}
-
-interface IState {
 }
 
 class VendingMachineState implements IState {
@@ -142,21 +160,6 @@ class SoldOutState extends VendingMachineState {
 
     public SoldOutState(VendingMachine vendingMachine) {
         this.vendingMachine = vendingMachine;
-    }
-}
-
-enum Coin {
-    TEN(10),
-    TWENTY(20),
-    THIRTY(30);
-
-    Coin(long value) {
-        this.value = value;
-    }
-
-    private long value;
-    public long getValue() {
-        return value;
     }
 }
 
