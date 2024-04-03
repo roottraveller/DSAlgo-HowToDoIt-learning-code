@@ -1,4 +1,5 @@
-import java.util.concurrent.*;
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.BlockingQueue;
 
 public class ProducerConsumerWithBlockingQueue {
     public static void main(String[] args) throws Exception {

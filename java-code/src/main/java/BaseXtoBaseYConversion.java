@@ -1,80 +1,87 @@
 import java.util.Scanner;
- 
-	/* 
-	* author : roottraveller, nov 4th 2017
-	*/
- 
+
 public class BaseXtoBaseYConversion {
- 
-	BaseXtoBaseYConversion() {
-	}
- 
-	public static String convertBaseXtoBaseY(String inputNumber, final int inputBase, final int outputBase) {
-		int decimal = baseXToDecimal(inputNumber, inputBase);
-		return decimalToBaseY(decimal, outputBase);
-	}
- 
+
+    public static String convertBaseXtoBaseY(String inputNumber, final int inputBase, final int outputBase) {
+        int decimal = baseXToDecimal(inputNumber, inputBase);
+        return decimalToBaseY(decimal, outputBase);
+    }
+
     private static int baseXNumeric(char input) {
         if (input >= '0' && input <= '9') {
-            return Integer.parseInt(input + "");
+            return input - '0';
         } else if (input >= 'a' && input <= 'z') {
-            return (input - 'a') + 10;
+            return input - 'a' + 10;
         } else if (input >= 'A' && input <= 'Z') {
-			return (input - 'A') + 10;
-		} else {
-			return Integer.MIN_VALUE;
-		}
-    }
- 
-    public static int baseXToDecimal(String input, final int base) {
-		if(input.length() <= 0) {
-			return Integer.MIN_VALUE;
-		}
- 
-        int decimalValue = 0;
-		int placeValue = 0;
- 
-        for (int index = input.length() - 1; index >= 0; index--) {
-            decimalValue += baseXNumeric(input.charAt(index)) * (Math.pow(base, placeValue));
-			placeValue++;
+            return input - 'A' + 10;
+        } else {
+            return -1; // Invalid input
         }
- 
+    }
+
+    public static int baseXToDecimal(String input, final int base) {
+        if (input.length() == 0) {
+            return -1; // Empty input
+        }
+
+        int decimalValue = 0;
+        int placeValue = 0;
+
+        for (int index = input.length() - 1; index >= 0; index--) {
+            int digitValue = baseXNumeric(input.charAt(index));
+            if (digitValue < 0 || digitValue >= base) {
+                return -1; // Invalid digit for the base
+            }
+            decimalValue += digitValue * pow(base, placeValue);
+            placeValue++;
+        }
+
         return decimalValue;
     }
- 
-   private static char baseYCharacter(int input) {
+
+    private static int pow(int base, int exponent) {
+        int result = 1;
+        for (int i = 0; i < exponent; i++) {
+            result *= base;
+        }
+        return result;
+    }
+
+    private static char baseYCharacter(int input) {
         if (input >= 0 && input <= 9) {
-            String str = String.valueOf(input);
-            return str.charAt(0);
+            return (char) (input + '0');
         } else {
-            return  (char) ('a' + (input - 10));
-			//return  ('A' + (input - 10));
+            return (char) ('a' + (input - 10));
         }
     }
- 
+
     public static String decimalToBaseY(int input, int base) {
-        String result = "";
- 
+        if (base < 2 || base > 36) {
+            return "Invalid base"; // Base must be between 2 and 36
+        }
+
+        StringBuilder result = new StringBuilder();
+
         while (input > 0) {
             int remainder = input % base;
             input = input / base;
-            result = baseYCharacter(remainder) + result;  // Important, Notice the reverse order here
+            result.insert(0, baseYCharacter(remainder)); // Insert characters at the beginning for correct order
         }
- 
-        return result;
+
+        return result.toString();
     }
- 
+
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-		System.out.println("Enter : number baseX baseY");
- 
-		while(true) {
-			String inputNumber = scanner.next();
-			int inputBase      = scanner.nextInt();
-			int outputBase     = scanner.nextInt();
- 
-			String outputNumber = convertBaseXtoBaseY(inputNumber, inputBase, outputBase);
-			System.out.println("Result = " + outputNumber);
-		}
+        System.out.println("Enter: number baseX baseY");
+
+        while (true) {
+            String inputNumber = scanner.next();
+            int inputBase = scanner.nextInt();
+            int outputBase = scanner.nextInt();
+
+            String outputNumber = convertBaseXtoBaseY(inputNumber, inputBase, outputBase);
+            System.out.println("Result = " + outputNumber);
+        }
     }
 }

@@ -1,27 +1,58 @@
-import java.util.*;
-
 public class RedBlackTreeDemo {
     private static final boolean RED = true;
     private static final boolean BLACK = false;
-
-    private class Node {
-        int key;
-        boolean color;
-        Node left, right, parent;
-
-        public Node(int key) {
-            this.key = key;
-            this.color = RED;
-            this.left = null;
-            this.right = null;
-            this.parent = null;
-        }
-    }
-
     private Node root;
 
     public RedBlackTreeDemo() {
         root = null;
+    }
+
+    public static void main(String[] args) {
+        RedBlackTreeDemo tree = new RedBlackTreeDemo();
+
+        // Insert elements into the tree
+        tree.insert(10);
+        tree.insert(20);
+        tree.insert(30);
+        tree.insert(15);
+        tree.insert(25);
+
+        // Display the elements in the tree
+        System.out.println("Elements in the Red-Black Tree:");
+        displayTree(tree.getRoot());
+        prettyPrintTree(tree.getRoot());
+    }
+
+    // Helper method to recursively display the elements in the tree
+    private static void displayTree(Node node) {
+        if (node != null) {
+            displayTree(node.left);
+            System.out.println(node.key);
+            displayTree(node.right);
+        }
+    }
+
+    // Pretty print tree
+    private static void prettyPrintTree(Node node) {
+        printHelper(node, "", true);
+    }
+
+    // Helper method to pretty print the tree
+    private static void printHelper(Node node, String indent, boolean last) {
+        if (node != null) {
+            System.out.print(indent);
+            if (last) {
+                System.out.print("R----");
+                indent += "     ";
+            } else {
+                System.out.print("L----");
+                indent += "|    ";
+            }
+            String colorString = node.color == RED ? "RED" : "BLACK";
+            System.out.println(node.key + "(" + colorString + ")");
+            printHelper(node.left, indent, false);
+            printHelper(node.right, indent, true);
+        }
     }
 
     private Node getRoot() {
@@ -130,51 +161,17 @@ public class RedBlackTreeDemo {
         root.color = BLACK;
     }
 
-    public static void main(String[] args) {
-        RedBlackTreeDemo tree = new RedBlackTreeDemo();
+    private class Node {
+        int key;
+        boolean color;
+        Node left, right, parent;
 
-        // Insert elements into the tree
-        tree.insert(10);
-        tree.insert(20);
-        tree.insert(30);
-        tree.insert(15);
-        tree.insert(25);
-
-        // Display the elements in the tree
-        System.out.println("Elements in the Red-Black Tree:");
-        displayTree(tree.getRoot());
-        prettyPrintTree(tree.getRoot());
-    }
-
-    // Helper method to recursively display the elements in the tree
-    private static void displayTree(Node node) {
-        if (node != null) {
-            displayTree(node.left);
-            System.out.println(node.key);
-            displayTree(node.right);
-        }
-    }
-
-    // Pretty print tree
-    private static void prettyPrintTree(Node node) {
-        printHelper(node, "", true);
-    }
-
-    // Helper method to pretty print the tree
-    private static void printHelper(Node node, String indent, boolean last) {
-        if (node != null) {
-            System.out.print(indent);
-            if (last) {
-                System.out.print("R----");
-                indent += "     ";
-            } else {
-                System.out.print("L----");
-                indent += "|    ";
-            }
-            String colorString = node.color == RED ? "RED" : "BLACK";
-            System.out.println(node.key + "(" + colorString + ")");
-            printHelper(node.left, indent, false);
-            printHelper(node.right, indent, true);
+        public Node(int key) {
+            this.key = key;
+            this.color = RED;
+            this.left = null;
+            this.right = null;
+            this.parent = null;
         }
     }
 }
