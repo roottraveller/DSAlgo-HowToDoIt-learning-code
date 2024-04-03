@@ -1,103 +1,95 @@
 import java.util.*;
 import java.util.concurrent.locks.Condition;
-import java.util.concurrent.locks.Lock; 
+import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
-// @author : rootTraveller, June 2017
+public class ProducerConsumerWithLock {
+    public static void main(String[] args) throws InterruptedException {
+        Queue<Integer> queue = new LinkedList<>();
+        int bufferSize = 20; // Buffer size
 
-class ProducerConsumerWithLock {
-	public static void main(String[] args) throws Exception {
-		ProducerConsumerImpl sharedObj = new ProducerConsumerImpl();
-		
-		Producer producer = new Producer(sharedObj, "PRODUCER");
-		Consumer consumer = new Consumer(sharedObj, "CONSUMER");
-		
-		producer.start();
-		consumer.start();
-	}
-}
+        Lock lock = new ReentrantLock();
+        Condition notFull = lock.newCondition();
+        Condition notEmpty = lock.newCondition();
 
+        Producer producerThread = new Producer(queue, bufferSize, "PRODUCER", lock, notFull, notEmpty);
+        Consumer consumerThread = new Consumer(queue, "CONSUMER", lock, notFull, notEmpty);
 
+        producerThread.start();
+        consumerThread.start();
+    }
 
-class Producer extends Thread {
-	ProducerConsumerImpl pc = null;
-	
-	Producer(ProducerConsumerImpl sharedObjIn, String threadName){
-		super(threadName);
-		this.pc = sharedObjIn;
-	}
-	
-	@Override
-	public void run() {
-		while (true) {
-			try {
-				pc.put();  //Produce 
-			} catch (InterruptedException e){
-				e.printStackTrace();
-			}
-		}
-	}
-}
+    static class Producer extends Thread {
+        private Queue<Integer> queue;
+        private int bufferSize;
+        private Lock lock;
+        private Condition notFull;
+        private Condition notEmpty;
 
-class Consumer extends Thread {
-	ProducerConsumerImpl  pc = null;
-	
-	Consumer(ProducerConsumerImpl sharedObjIn, String threadName) {
-		super(threadName);
-		this.pc = sharedObjIn;
-	}
-	
-	@Override
-	public void run(){
-		while (true) {
-			try{
-				pc.get();   //Consume
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-		}
-	}
-}
+        public Producer(Queue<Integer> queue, int bufferSize, String threadName, Lock lock, Condition notFull, Condition notEmpty) {
+            super(threadName);
+            this.queue = queue;
+            this.bufferSize = bufferSize;
+            this.lock = lock;
+            this.notFull = notFull;
+            this.notEmpty = notEmpty;
+        }
 
+        @Override
+        public void run() {
+            while (true) {
+                lock.lock();
+                try {
+                    while (queue.size() == bufferSize) {
+                        System.out.println(Thread.currentThread().getName() + " -> Buffer FULL: waiting......");
+                        notFull.await();
+                    }
 
+                    int randomInt = new Random().nextInt();
+                    System.out.println(Thread.currentThread().getName() + " -> Buffer ADDED: " + randomInt);
+                    queue.add(randomInt);
+                    notEmpty.signalAll();
+                } catch (InterruptedException ex) {
+                    ex.printStackTrace();
+                } finally {
+                    lock.unlock();
+                }
+            }
+        }
+    }
 
-class ProducerConsumerImpl {
-	private Queue<Integer> queue = new LinkedList<>();
-	private static final int queueSize = 10;  //Important, change as per need.
-	
-	private final Lock mylock = new ReentrantLock();    //Important, this part is for lock related stuff
-	private final Condition bufferNotFull  = mylock.newCondition();
-	private final Condition bufferNotEmpty = mylock.newCondition(); 
-	
-	public void put() throws InterruptedException {
-		mylock.lock();
-		try {
-			while (queue.size() == queueSize) {
-				System.out.println(Thread.currentThread().getName() + " -> Buffer  FULL    :  waiting......");
-				bufferNotEmpty.await();
-			}
-			
-			int randomInt = new Random().nextInt();
-			System.out.println(Thread.currentThread().getName() + " -> Buffer  ADDED   : " + randomInt); 
-			queue.offer(randomInt);
-			bufferNotFull.signalAll();
-		} finally {
-			mylock.unlock();
-		}
-	}
-	
-	public void get() throws InterruptedException {
-		mylock.lock();
-		try {
-			while (queue.isEmpty()) {
-				System.out.println(Thread.currentThread().getName() + " -> Buffer  EMPTY   :  waiting......");
-				bufferNotFull.await();
-			}
-			
-			System.out.println(Thread.currentThread().getName() + " -> Buffer  REMOVE  : " + queue.poll());
-			bufferNotEmpty.signalAll();
-		} finally {
-			mylock.unlock();
-		}
-	}
+    static class Consumer extends Thread {
+        private Queue<Integer> queue;
+        private Lock lock;
+        private Condition notFull;
+        private Condition notEmpty;
+
+        public Consumer(Queue<Integer> queue, String threadName, Lock lock, Condition notFull, Condition notEmpty) {
+            super(threadName);
+            this.queue = queue;
+            this.lock = lock;
+            this.notFull = notFull;
+            this.notEmpty = notEmpty;
+        }
+
+        @Override
+        public void run() {
+            while (true) {
+                lock.lock();
+                try {
+                    while (queue.isEmpty()) {
+                        System.out.println(Thread.currentThread().getName() + " -> Buffer EMPTY: waiting......");
+                        notEmpty.await();
+                    }
+
+                    System.out.println(Thread.currentThread().getName() + " -> Buffer REMOVE: " + queue.remove());
+                    notFull.signalAll();
+                } catch (InterruptedException ex) {
+                    ex.printStackTrace();
+                } finally {
+                    lock.unlock();
+                }
+            }
+        }
+    }
 }

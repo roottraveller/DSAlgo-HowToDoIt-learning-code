@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class ProducerConsumerBySynchronized {
+public class ProducerConsumerWithSynchronized {
 	public static void main(String[] args) throws Exception {
 		Queue<Integer> queue = new LinkedList<>();
 		int bufferSize = 20; // Buffer size
