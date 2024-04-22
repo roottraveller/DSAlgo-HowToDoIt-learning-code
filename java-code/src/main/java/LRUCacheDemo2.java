@@ -1,6 +1,16 @@
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+/*
+ * LinkedHashMap Internal Implementation:
+ * 
+ * 1. Data Structure: LinkedHashMap uses a hash table and a doubly-linked list (DLL) to store key-value pairs and to preserve insertion order.
+ * 2. HashMap Basis: Internally, it consists of an array of buckets (entries) similar to HashMap.
+ * 3. Iteration Order: Iterating over a LinkedHashMap returns entries in insertion (or access) order.
+ *
+ * removeEldestEntry: determine whether the eldest entry should be removed or not.
+ */
+
 public class LRUCacheDemo2<K, V> {
     private final int capacity;
     private final LinkedHashMap<K, V> cache;
