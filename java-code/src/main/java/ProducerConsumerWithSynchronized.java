@@ -2,6 +2,13 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Random;
 
+/* 
+ * Object class
+ *     ├── wait()
+ *     ├── notify()
+ *     └── notifyAll()
+ */
+
 public class ProducerConsumerWithSynchronized {
     public static void main(String[] args) throws Exception {
         Queue<Integer> queue = new LinkedList<>();
