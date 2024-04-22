@@ -18,6 +18,7 @@ public class TwoDArraysSort {
                 {"1202", "user_1", "resource_1"}
         };
 
+         // Sorting based on resource then second column value
         Arrays.sort(data, (a, b) -> {
             if (a[2].compareTo(b[2]) == 0) {
                 return Integer.parseInt(a[0]) - Integer.parseInt(b[0]);
@@ -44,12 +45,14 @@ public class TwoDArraysSort {
             System.out.println("{" + elem[0] + "," + elem[1] + "}");
         }
 
+        // Sorting based on first column
         Arrays.sort(data, Comparator.comparing(arr -> arr[0]));
         System.out.println("Sorted on first column");
         for (Integer[] elem : data) {
             System.out.println("{" + elem[0] + "," + elem[1] + "}");
         }
 
+        // Sorting based on second column
         Arrays.sort(data, Comparator.comparing(arr -> arr[1]));
         System.out.println("Sorted on second column");
         for (Integer[] elem : data) {
