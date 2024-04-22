@@ -1,6 +1,17 @@
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 
+/*
+ * BlockingQueue Main Concrete Implementation Classes:
+ * 
+ * (I) java.util.concurrent.BlockingQueue
+ *     ├── (C) LinkedBlockingQueue
+ *     ├── (C) ArrayBlockingQueue
+ *     ├── (C) PriorityBlockingQueue
+ *     └── (C) SynchronousQueue
+ */
+
+
 public class ProducerConsumerWithBlockingQueue {
     public static void main(String[] args) throws Exception {
         BlockingQueue<Integer> queue = new ArrayBlockingQueue<>(20); // Buffer size
