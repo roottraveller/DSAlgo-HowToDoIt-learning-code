@@ -1,6 +1,18 @@
 import java.util.Arrays;
 import java.util.Comparator;
 
+/*
+ * Comparator
+ *     ├── compare(T o1, T o2)
+ *     ├── equals(Object obj)
+ *     └── reversed()
+ */
+
+/*
+ * Comparable
+ *     └── compareTo(T o)
+ */
+
 public class TwoDArraysSort {
     public static void main(String[] args) {
         testMixedSorting();
