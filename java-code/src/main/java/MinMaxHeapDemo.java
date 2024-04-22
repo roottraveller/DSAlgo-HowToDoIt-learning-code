@@ -2,6 +2,16 @@ import java.util.Collections;
 import java.util.PriorityQueue;
 import java.util.Random;
 
+/*
+ * Minimum Heap                Maximum Heap
+ * ------------                ------------
+ *         1                           7
+ *       /   \                       /   \
+ *      3     2                     6     5
+ *     / \   / \                   / \   / \
+ *    5   4 6   7                 4   3 2   1
+ */
+
 public class MinMaxHeapDemo {
     private static final int HEAP_SIZE = 10; // size of heap
 
