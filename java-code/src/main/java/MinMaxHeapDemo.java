@@ -3,7 +3,7 @@ import java.util.PriorityQueue;
 import java.util.Random;
 
 /*
- * Minimum Heap                Maximum Heap
+ * Min Heap                    Max Heap
  * ------------                ------------
  *         1                           7
  *       /   \                       /   \
