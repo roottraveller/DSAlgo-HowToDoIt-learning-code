@@ -1,6 +1,25 @@
 import java.util.concurrent.BrokenBarrierException;
 import java.util.concurrent.CyclicBarrier;
 
+/*
+ * A CyclicBarrier in Java is a synchronization aid that allows a set of threads to wait for each other at a predefined barrier point before continuing execution.
+ * It's called "cyclic" because it can be reused after the waiting threads are released, unlike other synchronization constructs like CountDownLatch.
+ * 
+ */
+
+/*
+ * CyclicBarrier Class Main Methods:
+ * 
+ * CyclicBarrier:
+ *      ├── await()
+ *      ├── await(long timeout, TimeUnit unit)
+ *      ├── reset()
+ *      ├── getParties()
+ *      ├── isBroken()
+ *      └── getNumberWaiting()
+ */
+
+
 public class CyclicBarrierDemo {
     public static void main(String[] args) {
         // Create a CyclicBarrier with a count of 3
