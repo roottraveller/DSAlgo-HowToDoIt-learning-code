@@ -1,3 +1,13 @@
+/*
+ * Red-Black Tree Rules:
+ * 
+ * 1. Every node is either red or black.
+ * 2. The root is always black.
+ * 3. There are no two adjacent red nodes.
+ * 4. Every path from a node (including the root) to any of its descendant's NULL nodes has the same number of black nodes.
+ * 5. Every leaf (i.e., NULL node) must be colored BLACK.
+ */
+
 public class RedBlackTreeDemo {
     private static final boolean RED = true;
     private static final boolean BLACK = false;
