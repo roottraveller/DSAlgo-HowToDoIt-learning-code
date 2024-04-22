@@ -21,6 +21,14 @@ import java.util.concurrent.locks.ReentrantLock;
  *                                        (C) Sync.Mutex
  */
 
+/*
+ * Queue Main Concrete Implementation Classes:
+ * 
+ * (I) java.util.Queue
+ *     ├── (C) LinkedList
+ *     └── (C) PriorityQueue
+ */
+
 public class ProducerConsumerWithLock {
     public static void main(String[] args) throws InterruptedException {
         Queue<Integer> queue = new LinkedList<>();
