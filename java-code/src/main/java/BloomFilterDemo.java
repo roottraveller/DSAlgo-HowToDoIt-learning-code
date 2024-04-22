@@ -1,6 +1,12 @@
 import java.util.BitSet;
 import java.util.function.Function;
 
+/*
+ * The Bloom Filter is a probabilistic data structure used for membership testing, particularly in cases where the
+ * data set is large and access to individual elements needs to be fast. it may return false positives, meaning it 
+ * may incorrectly indicate that an element is a member of the set when it's not, but it will never return false negatives. 
+ * 
+ */
 
 public class BloomFilterDemo<T> {
     private final BitSet bitSet;
