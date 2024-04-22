@@ -1,7 +1,7 @@
 TL;DR;
 
 This repository showcases a fictional project where I've implemented code while learning core Java concepts.
-Questions related to the code can be found at gfg.com.
+Questions related to the code can be found online.
 
 The code emphasizes efficiency in its design. It's open for collaborative editing, extension, and personal use.
 If you identify areas for improvement, please feel free to contribute. However, maintain the existing code structure.
