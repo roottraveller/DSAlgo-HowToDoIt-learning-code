@@ -1,4 +1,44 @@
 import java.util.concurrent.*;
+/*
+ * Executor Framework Hierarchy:
+ * 
+ * java.util.concurrent.Executor
+ *             |
+ *    __________|________________
+ *   |                            |
+ *   |             (I) ExecutorService
+ *   |                    |
+ *   |      ______________|________________
+ *   |     |                              |
+ *   |     |                              |
+ * (C) ThreadPoolExecutor     (I) ScheduledExecutorService
+ *                                  |
+ *                     _____________|_____________________
+ *                    |                                   |
+ *       (C) ThreadPoolExecutor       (C) ScheduledThreadPoolExecutor
+ */
+
+/*
+ * Executors
+ *     ├── newCachedThreadPool
+ *     ├── newFixedThreadPool
+ *     │       └── newSingleThreadExecutor
+ *     ├── newScheduledThreadPool
+ *     └── newWorkStealingPool
+ */
+
+/*
+ * Thread
+ *   └── start(): void
+ *       └── run(): void
+ * 
+ * Runnable
+ *   └── run(): void
+ * 
+ * Callable<V>
+ *   └── call(): V
+ */
+
 
 public class AllWaysToCreateThreads {
 
