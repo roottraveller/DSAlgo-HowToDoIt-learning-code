@@ -18,6 +18,16 @@ import java.util.concurrent.locks.ReentrantLock;
  *                                        (C) Sync.Mutex
  */
 
+/*
+ * ReentrantLock Main Methods:
+ * 
+ * ReentrantLock
+ *     ├── lock()
+ *     ├── unlock()
+ *     ├── tryLock()
+ *     ├── newCondition()
+ *     └── toString()
+ */
 
 public class ReentrantLockDemo {
     // Shared counter
