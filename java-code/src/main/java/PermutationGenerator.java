@@ -12,6 +12,14 @@ public class PermutationGenerator<T> {
         for (String permutation : permutations) {
             System.out.println(permutation);
         }
+        /* 
+         * 1 2 3
+         * 1 3 2
+         * 2 1 3
+         * 2 3 1
+         * 3 2 1
+         * 3 1 2
+         */
 
         // Example usage with character array
         permutations.clear();
@@ -20,6 +28,14 @@ public class PermutationGenerator<T> {
         for (String permutation : permutations) {
             System.out.println(permutation);
         }
+         /* 
+         * a b c
+         * a c b
+         * b a c
+         * b c a
+         * c b a
+         * c a b
+         */
     }
 
     public static <T> void generatePermutations(T[] arr, int idx, List<String> permutations) {

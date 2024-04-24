@@ -5,6 +5,30 @@ import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
+/*
+ * Lock Class Hierarchy:
+ * 
+ *                 (I) java.util.concurrent.locks.Lock
+ *                          |
+ *            ______________|________________
+ *           |                                |
+ *       (C) ReentrantLock     (C) ReentrantReadWriteLock
+ *           |                                |
+ *           |                                |
+ *       (I) Condition                (C) ReadLock    (C) WriteLock
+ *                                              |
+ *                                              |
+ *                                        (C) Sync.Mutex
+ */
+
+/*
+ * Queue Main Concrete Implementation Classes:
+ * 
+ * (I) java.util.Queue
+ *     ├── (C) LinkedList
+ *     └── (C) PriorityQueue
+ */
+
 public class ProducerConsumerWithLock {
     public static void main(String[] args) throws InterruptedException {
         Queue<Integer> queue = new LinkedList<>();

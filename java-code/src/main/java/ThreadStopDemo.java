@@ -1,6 +1,6 @@
 import java.util.concurrent.TimeUnit;
 
-
+// This code demonstrates how to stop a thread gracefully in Java.
 public class ThreadStopDemo {
     public static void main(String[] args) throws InterruptedException {
         ServerThread stObj = new ServerThread();

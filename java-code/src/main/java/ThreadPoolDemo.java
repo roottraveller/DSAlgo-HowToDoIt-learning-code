@@ -1,6 +1,34 @@
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+/*
+ * Executor Framework Hierarchy:
+ * 
+ * java.util.concurrent.Executor
+ *             |
+ *    __________|________________
+ *   |                            |
+ *   |             (I) ExecutorService
+ *   |                    |
+ *   |      ______________|________________
+ *   |     |                              |
+ *   |     |                              |
+ * (C) ThreadPoolExecutor     (I) ScheduledExecutorService
+ *                                  |
+ *                     _____________|_____________________
+ *                    |                                   |
+ *       (C) ThreadPoolExecutor       (C) ScheduledThreadPoolExecutor
+ */
+
+/*
+ * Executors
+ *     ├── newCachedThreadPool
+ *     ├── newFixedThreadPool
+ *     │       └── newSingleThreadExecutor
+ *     ├── newScheduledThreadPool
+ *     └── newWorkStealingPool
+ */
+
 public class ThreadPoolDemo {
     private static final int THREAD_COUNT = 10;
 

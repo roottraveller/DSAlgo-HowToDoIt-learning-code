@@ -1,6 +1,34 @@
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
+
+/*
+ * Lock Class Hierarchy:
+ * 
+ *                 (I) java.util.concurrent.locks.Lock
+ *                          |
+ *            ______________|________________
+ *           |                                |
+ *       (C) ReentrantLock     (C) ReentrantReadWriteLock
+ *           |                                |
+ *           |                                |
+ *       (I) Condition                (C) ReadLock    (C) WriteLock
+ *                                              |
+ *                                              |
+ *                                        (C) Sync.Mutex
+ */
+
+/*
+ * ReentrantLock Main Methods:
+ * 
+ * ReentrantLock
+ *     ├── lock()
+ *     ├── unlock()
+ *     ├── tryLock()
+ *     ├── newCondition()
+ *     └── toString()
+ */
+
 public class ReentrantLockDemo {
     // Shared counter
     private static int counter = 0;
