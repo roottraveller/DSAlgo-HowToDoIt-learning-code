@@ -23,20 +23,25 @@ import org.learning.strategy.SortingStrategy;
 import org.learning.strategy.impl.BubbleSort;
 import org.learning.strategy.impl.HeapSort;
 import org.learning.strategy.impl.QuickSort;
+import org.learning.visitor.ShippingCostCalculator;
+import org.learning.visitor.StandardShippingCostCalculator;
+import org.learning.visitor.impl.Book;
+import org.learning.visitor.impl.Electronics;
 
 public class Main {
     public static void main(String[] args) {
         Main object = new Main();
 
-//        object.testBuilderPattern();
-//        object.testSingletonPattern();
-//        object.testFactoryPattern();
-//        object.testAdapter_or_WrapperPattern();
-//        object.testDecoratorPattern();
-//        object.testFacadePattern();
-//        object.testProxyPattern();
+        object.testBuilderPattern();
+        object.testSingletonPattern();
+        object.testFactoryPattern();
+        object.testAdapter_or_WrapperPattern();
+        object.testDecoratorPattern();
+        object.testFacadePattern();
+        object.testProxyPattern();
         object.testObserver_or_PubSubPattern();
         object.testStrategyPattern();
+        object.testVisitorPattern();
     }
 
     private void testBuilderPattern() {
@@ -157,6 +162,19 @@ public class Main {
         strategy.setAlgorithm(new HeapSort());
         strategy.performSort(array);
     }
+
+    public void testVisitorPattern(){
+        Book book = new Book(2.5);
+        Electronics electronics = new Electronics(1.8);
+
+        // Create visitor
+        ShippingCostCalculator calculator = new StandardShippingCostCalculator();
+
+        // Calculate shipping costs for each product
+        book.accept(calculator);
+        electronics.accept(calculator);
+    }
+
 
 
 }
