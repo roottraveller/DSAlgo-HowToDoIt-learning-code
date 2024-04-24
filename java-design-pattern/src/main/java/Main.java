@@ -31,6 +31,9 @@ import org.learning.strategy.SortingStrategy;
 import org.learning.strategy.impl.BubbleSort;
 import org.learning.strategy.impl.HeapSort;
 import org.learning.strategy.impl.QuickSort;
+import org.learning.template.ComputerBuilderTemplate;
+import org.learning.template.HighEndComputerBuilder;
+import org.learning.template.StandardComputerBuilder;
 import org.learning.visitor.ShippingCostCalculator;
 import org.learning.visitor.StandardShippingCostCalculator;
 import org.learning.visitor.impl.Book;
@@ -57,6 +60,7 @@ public class Main {
         object.testChainOfResponsibilityPattern();
         object.testPrototypePattern();
         object.testCompositePattern();
+        object.testTemplatePattern();
     }
 
     private void testBuilderPattern() {
@@ -232,6 +236,16 @@ public class Main {
 
         // Display employee hierarchy
         displayHierarchy(seniorManager, 0);
+    }
+
+    public void testTemplatePattern(){
+        // Build a standard computer
+        ComputerBuilderTemplate standardBuilder = new StandardComputerBuilder();
+        standardBuilder.buildComputer();
+
+        // Build a high-end computer
+        ComputerBuilderTemplate highEndBuilder = new HighEndComputerBuilder();
+        highEndBuilder.buildComputer();
     }
 
     // Method to recursively display employee hierarchy
