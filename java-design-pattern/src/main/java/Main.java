@@ -11,6 +11,9 @@ import org.learning.facade.DriveMode;
 import org.learning.facade.DriveModeFacade;
 import org.learning.factory.Currency;
 import org.learning.factory.CurrencyFactory;
+import org.learning.proxy.Database;
+import org.learning.proxy.DatabaseProxy;
+import org.learning.proxy.impl.RealDatabase;
 import org.learning.singleton.SingletonClassDemo;
 
 public class Main {
@@ -23,6 +26,7 @@ public class Main {
         object.testAdapterPattern();
         object.testDecoratorPattern();
         object.testFacadePattern();
+        object.testProxyPattern();
     }
 
     private void testBuilderPattern() {
@@ -87,9 +91,29 @@ public class Main {
         System.out.println("Decorated Dollar country: " + dollarDecorator.getCountry());
     }
 
-    public void testFacadePattern(){
+    public void testFacadePattern() {
         // Using the Facade to select driving modes
         DriveModeFacade.selectMode(DriveMode.COMFORT);
         DriveModeFacade.selectMode(DriveMode.SPORT);
     }
+
+    public void testProxyPattern() {
+        // Creating instances of real object and proxy
+        Database realDatabase = new RealDatabase();
+        Database adminProxy = new DatabaseProxy("admin");
+        Database userProxy = new DatabaseProxy("user");
+
+        // Testing real object
+        System.out.println("Testing Real Database:");
+        realDatabase.fetchData();
+
+        // Testing proxy with admin role
+        System.out.println("\nTesting Database Proxy with Admin Role:");
+        adminProxy.fetchData();
+
+        // Testing proxy with user role
+        System.out.println("\nTesting Database Proxy with User Role:");
+        userProxy.fetchData();
+    }
+
 }
