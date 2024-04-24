@@ -19,6 +19,10 @@ import org.learning.proxy.Database;
 import org.learning.proxy.DatabaseProxy;
 import org.learning.proxy.impl.RealDatabase;
 import org.learning.singleton.SingletonClassDemo;
+import org.learning.strategy.SortingStrategy;
+import org.learning.strategy.impl.BubbleSort;
+import org.learning.strategy.impl.HeapSort;
+import org.learning.strategy.impl.QuickSort;
 
 public class Main {
     public static void main(String[] args) {
@@ -32,6 +36,7 @@ public class Main {
 //        object.testFacadePattern();
 //        object.testProxyPattern();
         object.testObserver_or_PubSubPattern();
+        object.testStrategyPattern();
     }
 
     private void testBuilderPattern() {
@@ -122,7 +127,7 @@ public class Main {
     }
 
 
-    public void testObserver_or_PubSubPattern(){
+    public void testObserver_or_PubSubPattern() {
         // Creating instances of subject and observer
         Subject subject = new ConcreteSubject();
         Observer observer = new ConcreteObserver();
@@ -133,6 +138,24 @@ public class Main {
         // Setting state of subject
         String newState = "New State";
         subject.setState(newState);
+    }
+
+
+    public void testStrategyPattern() {
+        // Sorting an array using the strategy
+        int[] array = {5, 2, 8, 1, 4};
+
+        // Creating a strategy with bubble sort algorithm
+        SortingStrategy strategy = new SortingStrategy(new BubbleSort());
+        strategy.performSort(array);
+
+        // Changing the sorting algorithm to quick sort
+        strategy.setAlgorithm(new QuickSort());
+        strategy.performSort(array);
+
+        // Changing the sorting algorithm to heap sort
+        strategy.setAlgorithm(new HeapSort());
+        strategy.performSort(array);
     }
 
 
