@@ -11,6 +11,10 @@ import org.learning.facade.DriveMode;
 import org.learning.facade.DriveModeFacade;
 import org.learning.factory.Currency;
 import org.learning.factory.CurrencyFactory;
+import org.learning.observer.ConcreteObserver;
+import org.learning.observer.ConcreteSubject;
+import org.learning.observer.Observer;
+import org.learning.observer.Subject;
 import org.learning.proxy.Database;
 import org.learning.proxy.DatabaseProxy;
 import org.learning.proxy.impl.RealDatabase;
@@ -20,13 +24,14 @@ public class Main {
     public static void main(String[] args) {
         Main object = new Main();
 
-        object.testBuilderPattern();
-        object.testSingletonPattern();
-        object.testFactoryPattern();
-        object.testAdapterPattern();
-        object.testDecoratorPattern();
-        object.testFacadePattern();
-        object.testProxyPattern();
+//        object.testBuilderPattern();
+//        object.testSingletonPattern();
+//        object.testFactoryPattern();
+//        object.testAdapter_or_WrapperPattern();
+//        object.testDecoratorPattern();
+//        object.testFacadePattern();
+//        object.testProxyPattern();
+        object.testObserver_or_PubSubPattern();
     }
 
     private void testBuilderPattern() {
@@ -54,7 +59,7 @@ public class Main {
         System.out.println("Dollar symbol: " + dollar.getSymbol());
     }
 
-    public void testAdapterPattern() {
+    public void testAdapter_or_WrapperPattern() {
         Kilometer kilometer = new Kilometer();
         kilometer.setValue(100);
         Miles miles = new Miles();
@@ -115,5 +120,20 @@ public class Main {
         System.out.println("\nTesting Database Proxy with User Role:");
         userProxy.fetchData();
     }
+
+
+    public void testObserver_or_PubSubPattern(){
+        // Creating instances of subject and observer
+        Subject subject = new ConcreteSubject();
+        Observer observer = new ConcreteObserver();
+
+        // Adding observer to subject
+        subject.addObserver(observer);
+
+        // Setting state of subject
+        String newState = "New State";
+        subject.setState(newState);
+    }
+
 
 }
