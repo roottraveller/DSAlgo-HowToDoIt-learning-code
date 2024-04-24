@@ -2,6 +2,11 @@ import org.learning.adapter.UnitAdapter;
 import org.learning.adapter.impl.Kilometer;
 import org.learning.adapter.impl.Miles;
 import org.learning.builder.BuilderClassDemo;
+import org.learning.decorator.Decorator;
+import org.learning.decorator.DollerDecorator;
+import org.learning.decorator.RupeeDecorator;
+import org.learning.decorator.impl.Dollar;
+import org.learning.decorator.impl.Rupee;
 import org.learning.factory.Currency;
 import org.learning.factory.CurrencyFactory;
 import org.learning.singleton.SingletonClassDemo;
@@ -14,6 +19,7 @@ public class Main {
         object.testSingletonPattern();
         object.testFactoryPattern();
         object.testAdapterPattern();
+        object.testDecoratorPattern();
     }
 
     private void testBuilderPattern() {
@@ -41,7 +47,7 @@ public class Main {
         System.out.println("Dollar symbol: " + dollar.getSymbol());
     }
 
-    public  void testAdapterPattern(){
+    public void testAdapterPattern() {
         Kilometer kilometer = new Kilometer();
         kilometer.setValue(100);
         Miles miles = new Miles();
@@ -59,4 +65,22 @@ public class Main {
         System.out.println("Converted Miles to Kilometers: " + kilometerConverted);
     }
 
+    public void testDecoratorPattern() {
+        // Creating instances of concrete components
+        org.learning.decorator.Currency rupee = new Rupee();
+        org.learning.decorator.Currency dollar = new Dollar();
+
+        // Creating instances of concrete decorators
+        Decorator rupeeDecorator = new RupeeDecorator();
+        Decorator dollarDecorator = new DollerDecorator();
+
+        System.out.println("Rupee symbol: " + rupee.getSymbol());
+        System.out.println("Dollar symbol: " + dollar.getSymbol());
+
+        // Testing the concrete decorators
+        System.out.println("Decorated Rupee symbol: " + rupeeDecorator.getSymbol());
+        System.out.println("Decorated Rupee country: " + rupeeDecorator.getCountry());
+        System.out.println("Decorated Dollar symbol: " + dollarDecorator.getSymbol());
+        System.out.println("Decorated Dollar country: " + dollarDecorator.getCountry());
+    }
 }
