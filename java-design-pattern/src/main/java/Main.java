@@ -6,6 +6,9 @@ import org.learning.chainofresponsibility.AuthenticationHandler;
 import org.learning.chainofresponsibility.RoleCheckHandler;
 import org.learning.chainofresponsibility.ThrottlingHandler;
 import org.learning.chainofresponsibility.UserExistsHandler;
+import org.learning.composite.Developer;
+import org.learning.composite.Employee;
+import org.learning.composite.Manager;
 import org.learning.decorator.Decorator;
 import org.learning.decorator.DollerDecorator;
 import org.learning.decorator.RupeeDecorator;
@@ -33,6 +36,10 @@ import org.learning.visitor.StandardShippingCostCalculator;
 import org.learning.visitor.impl.Book;
 import org.learning.visitor.impl.Electronics;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class Main {
     public static void main(String[] args) {
         Main object = new Main();
@@ -49,6 +56,7 @@ public class Main {
         object.testVisitorPattern();
         object.testChainOfResponsibilityPattern();
         object.testPrototypePattern();
+        object.testCompositePattern();
     }
 
     private void testBuilderPattern() {
@@ -196,7 +204,7 @@ public class Main {
         System.out.println("Authentication result: " + (isAuthenticated ? "Success" : "Failed"));
     }
 
-    public void testPrototypePattern(){
+    public void testPrototypePattern() {
         // Create an instance of CloneClass
         CloneClass original = new CloneClass("Original Object");
 
@@ -209,6 +217,37 @@ public class Main {
         System.out.println("Are they the same? " + (original == cloned));
     }
 
+
+    public void testCompositePattern() {
+        // Create developers
+        Developer dev1 = new Developer("D1", "John Doe", Arrays.asList("Java", "Python"));
+        Developer dev2 = new Developer("D2", "Jane Smith", Arrays.asList("JavaScript", "HTML", "CSS"));
+
+        // Create managers
+        Manager manager1 = new Manager("M1", "Alice Johnson", Arrays.asList(dev1, dev2));
+        Manager manager2 = new Manager("M2", "Bob Williams", new ArrayList<>());
+
+        // Create a senior manager who manages managers
+        Manager seniorManager = new Manager("SM1", "Charlie Brown", Arrays.asList(manager1, manager2));
+
+        // Display employee hierarchy
+        displayHierarchy(seniorManager, 0);
+    }
+
+    // Method to recursively display employee hierarchy
+    private static void displayHierarchy(Employee employee, int level) {
+        StringBuilder indent = new StringBuilder();
+        for (int i = 0; i < level; i++) {
+            indent.append("    ");
+        }
+        System.out.println(indent + employee.getName() + "(" + employee.getId() + ")");
+        if (employee instanceof Manager) {
+            List<Employee> directs = ((Manager) employee).getDirects();
+            for (Employee direct : directs) {
+                displayHierarchy(direct, level + 1);
+            }
+        }
+    }
 
 
 }
