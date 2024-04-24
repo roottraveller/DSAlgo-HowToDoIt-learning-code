@@ -19,6 +19,7 @@ import org.learning.observer.ConcreteObserver;
 import org.learning.observer.ConcreteSubject;
 import org.learning.observer.Observer;
 import org.learning.observer.Subject;
+import org.learning.prototype.impl.CloneClass;
 import org.learning.proxy.Database;
 import org.learning.proxy.DatabaseProxy;
 import org.learning.proxy.impl.RealDatabase;
@@ -47,6 +48,7 @@ public class Main {
         object.testStrategyPattern();
         object.testVisitorPattern();
         object.testChainOfResponsibilityPattern();
+        object.testPrototypePattern();
     }
 
     private void testBuilderPattern() {
@@ -192,8 +194,21 @@ public class Main {
         boolean isAuthenticated = throttlingHandler.authenticate("user@example.com", "password123");
 
         System.out.println("Authentication result: " + (isAuthenticated ? "Success" : "Failed"));
-
     }
+
+    public void testPrototypePattern(){
+        // Create an instance of CloneClass
+        CloneClass original = new CloneClass("Original Object");
+
+        // Clone the original object
+        CloneClass cloned = (CloneClass) original.clone();
+
+        // Verify that cloning was successful
+        System.out.println("Original Object: " + original);
+        System.out.println("Cloned Object: " + cloned);
+        System.out.println("Are they the same? " + (original == cloned));
+    }
+
 
 
 }
