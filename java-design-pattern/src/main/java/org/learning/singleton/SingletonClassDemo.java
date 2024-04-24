@@ -10,9 +10,11 @@ package org.learning.singleton;
  *
  *
  * https://javarevisited.blogspot.com/2014/05/double-checked-locking-on-singleton-in-java.html#axzz7YGkYs1WH
- * 1- The static keyword ensures that there's only one instance of the variable shared across all instances of the class.
- * 2- The volatile keyword enforces that any read or write of the variable is done directly to and from the main memory (RAM),
- *    bypassing the thread's cache. This ensures that changes made to the variable by one thread are immediately visible to other threads.
+ * 1- The static keyword ensures that there's only one instance of the variable shared across all instances of the
+ * class.
+ * 2- The volatile keyword enforces that any read or write of the variable is done directly to and from the main
+ * memory (RAM), bypassing the thread's cache. This ensures that changes made to the variable by one thread are
+ * immediately visible to other threads.
  */
 
 

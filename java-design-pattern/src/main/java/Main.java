@@ -29,7 +29,7 @@ import org.learning.proxy.impl.RealDatabase;
 import org.learning.singleton.SingletonClassDemo;
 import org.learning.statemachine.Coin;
 import org.learning.statemachine.Item;
-import org.learning.statemachine.impl.VendingMachine;
+import org.learning.statemachine.VendingMachine;
 import org.learning.strategy.SortingStrategy;
 import org.learning.strategy.impl.BubbleSort;
 import org.learning.strategy.impl.HeapSort;
@@ -65,6 +65,21 @@ public class Main {
         object.testCompositePattern();
         object.testTemplatePattern();
         object.testStateMachinePattern();
+    }
+
+    // Method to recursively display employee hierarchy
+    private static void displayHierarchy(Employee employee, int level) {
+        StringBuilder indent = new StringBuilder();
+        for (int i = 0; i < level; i++) {
+            indent.append("    ");
+        }
+        System.out.println(indent + employee.getName() + "(" + employee.getId() + ")");
+        if (employee instanceof Manager) {
+            List<Employee> directs = ((Manager) employee).getDirects();
+            for (Employee direct : directs) {
+                displayHierarchy(direct, level + 1);
+            }
+        }
     }
 
     private void testBuilderPattern() {
@@ -154,7 +169,6 @@ public class Main {
         userProxy.fetchData();
     }
 
-
     public void testObserver_or_PubSubPattern() {
         // Creating instances of subject and observer
         Subject subject = new ConcreteSubject();
@@ -167,7 +181,6 @@ public class Main {
         String newState = "New State";
         subject.setState(newState);
     }
-
 
     public void testStrategyPattern() {
         // Sorting an array using the strategy
@@ -225,7 +238,6 @@ public class Main {
         System.out.println("Are they the same? " + (original == cloned));
     }
 
-
     public void testCompositePattern() {
         // Create developers
         Developer dev1 = new Developer("D1", "John Doe", Arrays.asList("Java", "Python"));
@@ -242,7 +254,7 @@ public class Main {
         displayHierarchy(seniorManager, 0);
     }
 
-    public void testTemplatePattern(){
+    public void testTemplatePattern() {
         // Build a standard computer
         ComputerBuilderTemplate standardBuilder = new StandardComputerBuilder();
         standardBuilder.buildComputer();
@@ -252,7 +264,7 @@ public class Main {
         highEndBuilder.buildComputer();
     }
 
-    public void testStateMachinePattern(){
+    public void testStateMachinePattern() {
         // Create a vending machine
         VendingMachine vendingMachine = new VendingMachine();
         // Load initial inventory
@@ -269,22 +281,6 @@ public class Main {
 
         // Display current state after transaction
         System.out.println("Final state: " + vendingMachine.getState());
-    }
-
-
-    // Method to recursively display employee hierarchy
-    private static void displayHierarchy(Employee employee, int level) {
-        StringBuilder indent = new StringBuilder();
-        for (int i = 0; i < level; i++) {
-            indent.append("    ");
-        }
-        System.out.println(indent + employee.getName() + "(" + employee.getId() + ")");
-        if (employee instanceof Manager) {
-            List<Employee> directs = ((Manager) employee).getDirects();
-            for (Employee direct : directs) {
-                displayHierarchy(direct, level + 1);
-            }
-        }
     }
 
 

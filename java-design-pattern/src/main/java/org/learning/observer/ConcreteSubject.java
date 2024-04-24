@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 /*
- * The Observer Pattern, also known as the Publisher/Subscriber Pattern, establishes a one-to-many dependency relationship
- * between objects, where multiple observers (subscribers) are notified when the state of a subject (publisher) changes.
- * This pattern enables loosely coupled communication between objects, as observers are not directly dependent on the subject
- * but instead subscribe to its changes.
+ * The Observer Pattern, also known as the Publisher/Subscriber Pattern, establishes a one-to-many dependency
+ * relationship between objects, where multiple observers (subscribers) are notified when the state of a subject
+ * (publisher) changes. This pattern enables loosely coupled communication between objects, as observers are not
+ *  directly dependent on the subject but instead subscribe to its changes.
  * Example:
  * java.util.EventListener
  *

@@ -12,7 +12,12 @@ public class ComfortMode implements DrivingMode {
     }
 
     // Private methods representing specific actions of comfort mode
-    private void mildSuspension() { }
-    private void cruiseControl() { }
-    private void automaticTransmission() { }
+    private void mildSuspension() {
+    }
+
+    private void cruiseControl() {
+    }
+
+    private void automaticTransmission() {
+    }
 }

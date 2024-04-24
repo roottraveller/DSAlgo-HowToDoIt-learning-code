@@ -14,8 +14,15 @@ public class SportMode implements DrivingMode {
     }
 
     // Private methods representing specific actions of sport mode
-    private void launchControl() { }
-    private void disableTractionControl() { }
-    private void paddleShift() { }
-    private void manualTransmission() { }
+    private void launchControl() {
+    }
+
+    private void disableTractionControl() {
+    }
+
+    private void paddleShift() {
+    }
+
+    private void manualTransmission() {
+    }
 }

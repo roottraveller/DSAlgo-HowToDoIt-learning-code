@@ -1,13 +1,26 @@
-package org.learning.statemachine.impl;
+package org.learning.statemachine;
 
 import lombok.Data;
-import org.learning.statemachine.*;
+import org.learning.statemachine.impl.IdealState;
+import org.learning.statemachine.impl.ItemInventory;
+
+/*
+ * The State Pattern encapsulates the behavior of an object into different states and allows the object to alter its
+ * behavior when its internal state changes. This pattern is particularly useful when an object's behavior depends on
+ * its state and needs to change dynamically at runtime.
+ * Example:
+ * ReentrantLock class in java.util.concurrent.locks package
+ *
+ *
+ * https://javarevisited.blogspot.com/2021/07/state-design-pattern-example-java-vending-machine.html#axzz7YGkYs1WH
+ */
+
 
 @Data
 // Step 2: Define the context class
 public class VendingMachine implements IMachine {
-    private IState state;
     private final Inventory itemInventory = new ItemInventory();
+    private IState state;
     private Item currentItem;
 
     public VendingMachine() {

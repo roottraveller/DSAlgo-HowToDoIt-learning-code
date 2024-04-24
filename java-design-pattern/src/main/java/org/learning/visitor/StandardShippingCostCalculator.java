@@ -4,8 +4,9 @@ import org.learning.visitor.impl.Book;
 import org.learning.visitor.impl.Electronics;
 
 /*
- * The Visitor Pattern separates an algorithm from the object structure it operates on by defining a new operation in a separate visitor class.
- * It enables the addition of new operations to an object structure without modifying its classes, promoting extensibility and maintainability.
+ * The Visitor Pattern separates an algorithm from the object structure it operates on by defining a new operation in
+ *  a separate visitor class. It enables the addition of new operations to an object structure without modifying its
+ * classes, promoting extensibility and maintainability.
  * Example:
  * java.nio.file
  *
