@@ -2,6 +2,10 @@ import org.learning.adapter.UnitAdapter;
 import org.learning.adapter.impl.Kilometer;
 import org.learning.adapter.impl.Miles;
 import org.learning.builder.BuilderClassDemo;
+import org.learning.chainofresponsibility.AuthenticationHandler;
+import org.learning.chainofresponsibility.RoleCheckHandler;
+import org.learning.chainofresponsibility.ThrottlingHandler;
+import org.learning.chainofresponsibility.UserExistsHandler;
 import org.learning.decorator.Decorator;
 import org.learning.decorator.DollerDecorator;
 import org.learning.decorator.RupeeDecorator;
@@ -42,6 +46,7 @@ public class Main {
         object.testObserver_or_PubSubPattern();
         object.testStrategyPattern();
         object.testVisitorPattern();
+        object.testChainOfResponsibilityPattern();
     }
 
     private void testBuilderPattern() {
@@ -163,7 +168,7 @@ public class Main {
         strategy.performSort(array);
     }
 
-    public void testVisitorPattern(){
+    public void testVisitorPattern() {
         Book book = new Book(2.5);
         Electronics electronics = new Electronics(1.8);
 
@@ -175,6 +180,20 @@ public class Main {
         electronics.accept(calculator);
     }
 
+    public void testChainOfResponsibilityPattern() {
+        // Create the chain of responsibility
+        AuthenticationHandler throttlingHandler = new ThrottlingHandler();
+        AuthenticationHandler userExistsHandler = new UserExistsHandler();
+        AuthenticationHandler roleCheckHandler = new RoleCheckHandler();
+
+        // Set up the chain
+        throttlingHandler.setNextHandler(userExistsHandler);
+        userExistsHandler.setNextHandler(roleCheckHandler);
+        boolean isAuthenticated = throttlingHandler.authenticate("user@example.com", "password123");
+
+        System.out.println("Authentication result: " + (isAuthenticated ? "Success" : "Failed"));
+
+    }
 
 
 }
