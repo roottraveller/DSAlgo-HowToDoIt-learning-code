@@ -7,6 +7,9 @@ package org.learning;
  * Example:
  * java.lang.StringBuilder
  * java.lang.StringBuffer
+ *
+ *
+ * https://javarevisited.blogspot.com/2012/06/builder-design-pattern-in-java-example.html#axzz7XpEkzHVa
  */
 
 import lombok.Data;
@@ -44,16 +47,5 @@ public class BuilderClassDemo {
         public BuilderClassDemo build() {
             return new BuilderClassDemo(this);
         }
-    }
-
-    // Test
-    public static void main(String[] args) {
-        BuilderClassDemo demo = new BuilderClassDemo.Builder()
-                .name("Rishi")
-                .crush("Gussi")
-                .build();
-
-        System.out.println("Name: " + demo.getName());
-        System.out.println("Crush: " + demo.getCrush());
     }
 }
