@@ -27,6 +27,9 @@ import org.learning.proxy.Database;
 import org.learning.proxy.DatabaseProxy;
 import org.learning.proxy.impl.RealDatabase;
 import org.learning.singleton.SingletonClassDemo;
+import org.learning.statemachine.Coin;
+import org.learning.statemachine.Item;
+import org.learning.statemachine.impl.VendingMachine;
 import org.learning.strategy.SortingStrategy;
 import org.learning.strategy.impl.BubbleSort;
 import org.learning.strategy.impl.HeapSort;
@@ -61,6 +64,7 @@ public class Main {
         object.testPrototypePattern();
         object.testCompositePattern();
         object.testTemplatePattern();
+        object.testStateMachinePattern();
     }
 
     private void testBuilderPattern() {
@@ -247,6 +251,26 @@ public class Main {
         ComputerBuilderTemplate highEndBuilder = new HighEndComputerBuilder();
         highEndBuilder.buildComputer();
     }
+
+    public void testStateMachinePattern(){
+        // Create a vending machine
+        VendingMachine vendingMachine = new VendingMachine();
+        // Load initial inventory
+        vendingMachine.loadInventory();
+
+        // Display current state
+        System.out.println("Initial state: " + vendingMachine.getState());
+
+        // Simulate a transaction
+        Item item = new Item("Coke", 1.50, 10);
+        vendingMachine.selectItem(item);
+        vendingMachine.insertCoin(Coin.RUPEE);
+        vendingMachine.processTransaction();
+
+        // Display current state after transaction
+        System.out.println("Final state: " + vendingMachine.getState());
+    }
+
 
     // Method to recursively display employee hierarchy
     private static void displayHierarchy(Employee employee, int level) {
