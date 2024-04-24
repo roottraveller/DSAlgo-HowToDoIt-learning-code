@@ -1,4 +1,4 @@
-package org.learning;
+package org.learning.singleton;
 
 /*
  * The Singleton Pattern restricts a class to have only one instance throughout the runtime of an application.

@@ -1,5 +1,7 @@
-import org.learning.BuilderClassDemo;
-import org.learning.SingletonClassDemo;
+import org.learning.builder.BuilderClassDemo;
+import org.learning.factory.Currency;
+import org.learning.factory.CurrencyFactory;
+import org.learning.singleton.SingletonClassDemo;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
@@ -9,6 +11,7 @@ public class Main {
 
         object.testBuilderPattern();
         object.testSingletonPattern();
+        object.testFactoryPattern();
     }
 
     private void testBuilderPattern() {
@@ -25,5 +28,15 @@ public class Main {
         SingletonClassDemo singleton = SingletonClassDemo.getInstance();
         singleton.setField("Setting field value");
         System.out.println(singleton.getField());
+    }
+
+    public void testFactoryPattern() {
+        // Creating currencies using the factory
+        Currency rupee = CurrencyFactory.createCurrency("INDIA");
+        Currency dollar = CurrencyFactory.createCurrency("USA");
+
+        // Testing the created currencies
+        System.out.println("Rupee symbol: " + rupee.getSymbol());
+        System.out.println("Dollar symbol: " + dollar.getSymbol());
     }
 }

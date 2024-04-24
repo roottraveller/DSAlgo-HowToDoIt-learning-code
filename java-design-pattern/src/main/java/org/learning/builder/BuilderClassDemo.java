@@ -1,4 +1,4 @@
-package org.learning;
+package org.learning.builder;
 
 /*
  * The Builder Pattern serves as a solution for creating complex objects by separating their construction from their
