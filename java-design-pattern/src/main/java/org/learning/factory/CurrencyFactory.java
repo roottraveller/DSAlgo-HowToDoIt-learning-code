@@ -17,7 +17,6 @@ import org.learning.factory.impl.Rupee;
  * https://javarevisited.blogspot.com/2013/01/difference-between-factory-and-abstract-factory-design-pattern-java.html#axzz7YGkYs1WH
  */
 
-
 // Step 1: Define a factory class which hides the object creation logic
 public class CurrencyFactory {
 
