@@ -1,4 +1,4 @@
-/*
+package multithreading;/*
  * Deadlock Scenario:
  * 
  * Thread 1 locks Resource A and waits to lock Resource B.

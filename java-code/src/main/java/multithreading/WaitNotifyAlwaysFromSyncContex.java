@@ -1,3 +1,5 @@
+package multithreading;
+
 /**
  * In Java, the wait() and notifyAll() methods are used for inter-thread communication and synchronization. 
  * They are typically called from within a synchronized block or method to ensure proper thread coordination 
