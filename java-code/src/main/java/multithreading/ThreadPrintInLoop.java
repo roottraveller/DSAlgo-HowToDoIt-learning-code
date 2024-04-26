@@ -32,7 +32,6 @@ public class ThreadPrintInLoop {
 
         @Override
         public void run() {
-//            System.out.println(Thread.currentThread().getName());
             while (count < maxCount) {
                 synchronized (lock) {
                     try {
