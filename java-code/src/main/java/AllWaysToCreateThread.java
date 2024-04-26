@@ -40,7 +40,7 @@ import java.util.concurrent.*;
  */
 
 
-public class AllWaysToCreateThreads {
+public class AllWaysToCreateThread {
 
     // Way 1: Extending the Thread class
     static class MyThread extends Thread {
