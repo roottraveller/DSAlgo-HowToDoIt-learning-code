@@ -6,4 +6,5 @@ include 'background-color-of-image'
 include 'terminal-based-chatserver'
 include 'java-code'
 include 'java-design-pattern'
+include 'leetcode-design-tag'
 
