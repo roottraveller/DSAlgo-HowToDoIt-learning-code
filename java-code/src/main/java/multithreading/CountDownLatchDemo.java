@@ -27,9 +27,9 @@ public class CountDownLatchDemo {
         CountDownLatch latch = new CountDownLatch(3);
 
         // Create and start three worker threads
-        WorkerThread worker1 = new WorkerThread("Worker 1", latch);
-        WorkerThread worker2 = new WorkerThread("Worker 2", latch);
-        WorkerThread worker3 = new WorkerThread("Worker 3", latch);
+        Thread worker1 = new Thread(new WorkerRunnable("Worker 1", latch));
+        Thread worker2 = new Thread(new WorkerRunnable("Worker 2", latch));
+        Thread worker3 = new Thread(new WorkerRunnable("Worker 3", latch));
 
         worker1.start();
         worker2.start();
@@ -44,11 +44,11 @@ public class CountDownLatchDemo {
         }
     }
 
-    static class WorkerThread extends Thread {
+    static class WorkerRunnable implements Runnable {
         private final CountDownLatch latch;
 
-        public WorkerThread(String name, CountDownLatch latch) {
-            super(name);
+        public WorkerRunnable(String name, CountDownLatch latch) {
+            super(name); // Set the thread name
             this.latch = latch;
         }
 
