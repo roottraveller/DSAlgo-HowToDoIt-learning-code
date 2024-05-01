@@ -94,9 +94,15 @@ public class AllWaysToCreateThread {
         executor2.shutdown();
 
         // Way 6: Using CompletableFuture
-        CompletableFuture<Void> completableFuture = CompletableFuture.runAsync(() -> {
+        CompletableFuture<String> completableFuture = CompletableFuture.runAsync(() -> {
             System.out.println("Thread created using CompletableFuture");
+            return "Task completed";
         });
-        completableFuture.get(); // Wait for completion
+        try {
+            String result = completableFuture.get(); // Wait for completion
+            System.out.println("Final Result: " + result);
+        } catch (InterruptedException | ExecutionException e) {
+            e.printStackTrace();
+        }
     }
 }
