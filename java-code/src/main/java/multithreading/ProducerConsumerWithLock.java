@@ -23,6 +23,13 @@ import java.util.concurrent.locks.ReentrantLock;
  *                                        (C) Sync.Mutex
  */
 
+/* 
+ * (I) java.util.concurrent.locks.Condition main methods 
+ *     ├── void await() throws InterruptedException
+ *     ├── void signal()
+ *     └── void signalAll()
+ */
+
 /*
  * Queue Main Concrete Implementation Classes:
  * 
