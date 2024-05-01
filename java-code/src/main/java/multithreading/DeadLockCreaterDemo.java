@@ -4,7 +4,8 @@ package multithreading;/*
  * Thread 1 locks Resource A and waits to lock Resource B.
  * Thread 2 locks Resource B and waits to lock Resource A.
  * 
- * This situation creates a cyclic dependency where each thread is waiting for the other to release a lock, resulting in a deadlock.
+ * This situation creates a cyclic dependency where each thread is waiting for the other to release 
+ * a lock, resulting in a deadlock.
  */
 
 
