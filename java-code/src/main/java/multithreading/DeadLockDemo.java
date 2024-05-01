@@ -9,7 +9,7 @@ package multithreading;/*
  */
 
 
-public class DeadLockCreaterDemo {
+public class DeadLockDemo {
     private static final Object resource1 = new Object();
     private static final Object resource2 = new Object();
 
