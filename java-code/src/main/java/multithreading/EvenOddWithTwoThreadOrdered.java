@@ -2,6 +2,10 @@ package multithreading;
 
 /*
  * This will print output in monotonically increasing order.
+ * 
+ * When a thread calls lock.wait(), it releases the lock associated with the object lock and enters the waiting state. 
+ * It will remain in the waiting state until another thread calls lock.notify() or lock.notifyAll() on the same object, 
+ * which notifies the waiting thread and allows it to wake up and try to reacquire the lock.
  * */
 public class EvenOddWithTwoThreadOrdered {
 
