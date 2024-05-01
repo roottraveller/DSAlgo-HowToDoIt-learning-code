@@ -6,6 +6,7 @@ import java.util.concurrent.BlockingQueue;
 /*
  * If the queue is full, the put() operation in the Producer thread will block until there is space available.
  * The take() operation in the Consumer thread blocks if the queue is empty, waiting for items to become available.
+ * put() and take() are already synchronized internally, ensuring thread safety without the need for explicit synchronization.
  * 
  * BlockingQueue Main Concrete Implementation Classes:
  * 
