@@ -15,6 +15,9 @@ package org.learning.singleton;
  * 2- The volatile keyword enforces that any read or write of the variable is done directly to and from the main
  * memory (RAM), bypassing the thread's cache. This ensures that changes made to the variable by one thread are
  * immediately visible to other threads.
+ * 3- Double null check -  This is necessary to ensure that if two threads simultaneously pass the first null check 
+ * and both find the instance to be null, only one thread will create the instance while the other waits. Without this 
+ * second null check inside the synchronized block, multiple instances of the singleton could potentially be created in a concurrent scenario.
  */
 
 
