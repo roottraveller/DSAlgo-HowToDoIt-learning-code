@@ -5,18 +5,18 @@ import java.util.concurrent.TimeUnit;
 // This code demonstrates how to stop a thread gracefully in Java.
 public class ThreadStopDemo {
     public static void main(String[] args) throws InterruptedException {
-        ServerThread stObj = new ServerThread();
-        Thread td = new Thread(stObj, "Server Thread");
-        td.start();
+        ServerWorker server = new ServerWorker();
+        Thread thread = new Thread(server, "Server Thread");
+        thread.start();
 
         System.out.println(Thread.currentThread().getName() + " calling stop() on Server Thread");
-        TimeUnit.MILLISECONDS.sleep(10); // Let's wait in milliseconds and see server thread stopped
-        stObj.stopThread(); // Call the method to stop the thread
+        TimeUnit.MILLISECONDS.sleep(10); // Let's wait in milliseconds and see the server thread stopped
+        server.stopThread(); // Call the method to stop the thread
     }
 }
 
-class ServerThread implements Runnable {
-    private volatile boolean isExit = false;
+class ServerWorker implements Runnable {
+    private volatile boolean isExit = false; // IMP 
 
     @Override
     public void run() {

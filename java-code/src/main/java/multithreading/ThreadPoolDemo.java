@@ -6,8 +6,8 @@ import java.util.concurrent.Executors;
 /*
  * Executor Framework Hierarchy:
  * 
- * java.util.concurrent.Executor
- *             |
+ *  (I) java.util.concurrent.Executor
+ *              |
  *    __________|________________
  *   |                            |
  *   |             (I) ExecutorService
@@ -26,7 +26,7 @@ import java.util.concurrent.Executors;
  * Executors
  *     ├── newCachedThreadPool
  *     ├── newFixedThreadPool
- *     │       └── newSingleThreadExecutor
+ *     ├── newSingleThreadExecutor
  *     ├── newScheduledThreadPool
  *     └── newWorkStealingPool
  */
@@ -35,14 +35,14 @@ public class ThreadPoolDemo {
     private static final int THREAD_COUNT = 10;
 
     public static void main(String[] args) {
-        ExecutorService service = Executors.newFixedThreadPool(THREAD_COUNT);
+        ExecutorService executor = Executors.newFixedThreadPool(THREAD_COUNT);
 
         for (int i = 1; i <= 100; ++i) {
-            service.submit(new MyThreadClass(i));
+            executor.submit(new MyThreadClass(i));
         }
 
         // Shutdown the executor when all tasks are completed
-        service.shutdown();
+        executor.shutdown();
         System.out.println("\n\nFor loop terminated. Now terminating - " + Thread.currentThread().getName());
     }
 }

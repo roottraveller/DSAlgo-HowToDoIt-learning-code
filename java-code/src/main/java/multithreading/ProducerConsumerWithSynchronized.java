@@ -16,14 +16,14 @@ public class ProducerConsumerWithSynchronized {
         Queue<Integer> queue = new LinkedList<>();
         int bufferSize = 20; // Buffer size
 
-        Producer producerThread = new Producer(queue, bufferSize, "PRODUCER");
-        Consumer consumerThread = new Consumer(queue, "CONSUMER");
+        Thread producerThread = new Thread(new Producer(queue, bufferSize, "PRODUCER"));
+        Thread consumerThread = new Thread(new Consumer(queue, "CONSUMER"));
 
         producerThread.start();
         consumerThread.start();
     }
 
-    static class Producer extends Thread {
+    static class Producer implements Runnable {
         private Queue<Integer> queue;
         private int bufferSize;
 
@@ -55,7 +55,7 @@ public class ProducerConsumerWithSynchronized {
         }
     }
 
-    static class Consumer extends Thread {
+    static class Consumer implements Runnable {
         private Queue<Integer> queue;
 
         public Consumer(Queue<Integer> queue, String threadName) {

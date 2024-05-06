@@ -60,7 +60,7 @@ public class AllWaysToCreateThread {
 
     public static void main(String[] args) throws Exception {
         // Way 1: Creating and starting thread by extending Thread class
-        MyThread thread1 = new MyThread();
+        Thread thread1 = new MyThread();
         thread1.start();
 
         // Way 2: Creating and starting thread by implementing Runnable interface
@@ -75,9 +75,11 @@ public class AllWaysToCreateThread {
 
         // Way 4: Using ExecutorService with Runnable
         ExecutorService executor1 = Executors.newSingleThreadExecutor();
-        executor1.submit(() -> {
+        Future<String> future = executor1.submit(() -> {
             System.out.println("Thread created using ExecutorService with Runnable");
+            return "Task completed";
         });
+        System.out.println(future.get());
         executor1.shutdown();
 
         // Way 5: Using ExecutorService with Callable
@@ -92,9 +94,15 @@ public class AllWaysToCreateThread {
         executor2.shutdown();
 
         // Way 6: Using CompletableFuture
-        CompletableFuture<Void> completableFuture = CompletableFuture.runAsync(() -> {
+        CompletableFuture<String> completableFuture = CompletableFuture.runAsync(() -> {
             System.out.println("Thread created using CompletableFuture");
+            return "Task completed";
         });
-        completableFuture.get(); // Wait for completion
+        try {
+            String result = completableFuture.get(); // Wait for completion
+            System.out.println("Final Result: " + result);
+        } catch (InterruptedException | ExecutionException e) {
+            e.printStackTrace();
+        }
     }
 }
