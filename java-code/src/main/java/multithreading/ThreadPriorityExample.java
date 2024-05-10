@@ -1,3 +1,5 @@
+package multithreading;
+
 import java.lang.Thread;
 
 /* Thread Priority 
