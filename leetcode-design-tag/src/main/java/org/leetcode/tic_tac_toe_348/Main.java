@@ -1,4 +1,4 @@
-package org.leetcode.tic_tac_toe;
+package org.leetcode.tic_tac_toe_348;
 
 public class Main {
     public static void main(String[] args) {

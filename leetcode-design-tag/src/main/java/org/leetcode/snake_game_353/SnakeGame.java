@@ -1,4 +1,4 @@
-package org.leetcode.snake_game;
+package org.leetcode.snake_game_353;
 
 import java.util.*;
 
