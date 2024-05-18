@@ -1,4 +1,4 @@
-package org.leetcode.in_memory_file_system;
+package org.leetcode.in_memory_file_system_588;
 
 
 public class Main {

@@ -1,4 +1,4 @@
-package org.leetcode.logger_rate_limiter;
+package org.leetcode.logger_rate_limiter_359;
 
 import java.util.HashMap;
 import java.util.Map;

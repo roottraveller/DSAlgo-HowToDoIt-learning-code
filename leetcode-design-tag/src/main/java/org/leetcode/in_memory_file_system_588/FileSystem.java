@@ -1,4 +1,4 @@
-package org.leetcode.in_memory_file_system;
+package org.leetcode.in_memory_file_system_588;
 
 import java.util.ArrayList;
 import java.util.Collections;
