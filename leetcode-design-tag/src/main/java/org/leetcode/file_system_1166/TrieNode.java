@@ -1,4 +1,4 @@
-package org.leetcode.file_system;
+package org.leetcode.file_system_1166;
 
 import lombok.Data;
 
