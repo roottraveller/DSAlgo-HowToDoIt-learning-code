@@ -1,4 +1,4 @@
-package org.leetcode.hit_counter;
+package org.leetcode.hit_counter_362;
 
 import java.util.LinkedList;
 import java.util.Queue;
